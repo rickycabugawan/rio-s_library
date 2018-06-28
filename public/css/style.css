@@ -22,6 +22,11 @@ body {
 	min-height: 200px;
 }
 
+.book__img {
+	width: 130px;
+	height: 200px;
+}
+
 .book__btn {
 	width: 100%;
 	max-width: 130px;

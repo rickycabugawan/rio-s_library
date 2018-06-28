@@ -1,6 +1,7 @@
 /*slick carousel*/
 $(document).ready(function(){
   $('.book-carousel .card-body .row').slick({
+    lazyLoad: 'ondemand',
     infinite: false,
 	slidesToShow: 6,
 	slidesToScroll: 6

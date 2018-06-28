@@ -2,18 +2,17 @@
   <div class="text-dark">
     <a href="" class="text-dark"><h4>{{ $title }}</h4></a>
   </div>
-  <div>
-    
-	@if ($data > 0)
+  <div>   
+	@if (count($data) > 0)
 	<div class="row">
-	    @for($i=0;$i<7;$i++)
+	    @foreach($data as $book)
     		<div class="book col-2 p-0 mx-2">
 			  <div class="p-0 text-center">
-			    <a href=""><img class="img-fluid book__img" src="{{asset('img/01.jpg')}}"></a>
-			    <a href="#" class="btn btn-sm btn-primary book__borrow-btn mt-3">Borrow</a>
+			    <a href="{{action('BookController@show',['id' => $book->id])}}"><img class="img-fluid book__img" src="" data-lazy="{{ asset('img/cover/')."/".$book->imageURL}}"></a>
+			    <a href="#" class="btn btn-sm {{$btnclass}} book__btn mt-3">{{$btntext}}</a>
 			  </div>
 			</div>
-    	@endfor
+    	@endforeach
     </div>
 	@else
 	   <div class="empty text-center">

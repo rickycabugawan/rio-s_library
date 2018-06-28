@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Book;
 use App\Genre;
 use App\LibrarySection;
-use Illuminate\Http\Request;
+use App\BorrowedBook;
+use App\FavoriteBook;
+use App\User;
+use Auth;
 
 class BookController extends Controller
 {
+    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function search()
     {
-        //
+         return view('search');
     }
 
     /**
@@ -50,7 +56,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        $data = Book::all();
+        return view('single',compact('data','book'));
     }
 
     /**
@@ -85,5 +92,22 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //
+    }
+
+    /**
+     * Display a listing of borrowed books and favorites.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mybooks()
+    {
+        $id = Auth::user()->id;
+        $data = Book::all();
+        $borrowed_books = BorrowedBook::all();
+        $favorite_books = FavoriteBook::all();
+        $borrowed_books_id = $borrowed_books->where('user_id', $id)->book_id;
+        $favorite_books_id = $favorite_books->where('user_id', $id)->book_id;
+
+        return view('mybooks', compact('borrowed_books_id','favorite_books_id','data'));
     }
 }

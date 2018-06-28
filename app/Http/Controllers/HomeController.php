@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
+use App\Genre;
+use App\LibrarySection;
 
 class HomeController extends Controller
 {
@@ -11,10 +14,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data=Book::all();
+        $genres = Genre::all();
+        $sections = LibrarySection::all();
+        return view('index', compact('data','genres','sections'));
     }
 }

@@ -30,7 +30,7 @@
 
 		<label for="section" class="col-sm-2 col-form-label my-3">Library Section: </label>
 		<div class="col-sm-10 my-3">
-			<select class="form-control" id="section" name="section">
+			<select class="form-control" id="section" name="library_section">
 				@foreach($sections as $section)
 					<option value="{{$section->section}}">{{$section->section}}</option>
 				@endforeach
@@ -39,8 +39,8 @@
 
 		<label for="image" class="col-sm-2 col-form-label my-3">Book Cover: </label>
 		<div class="col-sm-10 my-3">
-			<input type="file" class="input-img form-control mb-4" id="image" name="image" accept=".png, .jpg, .jpeg">
-			<img class="offset-2 col-6 preview-img img-fluid p-0 mb-4" src="{{asset('img/placeholder.png')}}">
+			<input type="file" class="input-img form-control mb-4" id="image" name="imageURL" accept=".png, .jpg, .jpeg">
+			<img class="offset-2 col-6 preview-img img-fluid p-0 mb-4" src="{{asset('img/placeholder/placeholder.png')}}">
 		</div>
 		<button type="submit" class="mx-auto btn btn-lg btn-success">Add Book</button>
 	</form>

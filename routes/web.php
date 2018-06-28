@@ -10,22 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/single', function () {
-    return view('single');
-});
-Route::get('/add', function () {
-    return view('add');
-});
-Route::get('/search', function () {
-    return view('search');
-});
-Route::get('/mybooks', function () {
-    return view('mybooks');
-});
+Route::get('/search', 'BookController@search');
+
+Route::get('/mybooks', 'BookController@mybooks');
 
 Route::resource('books', 'BookController')->only([
     'create', 'store', 'show', 'destroy'
@@ -34,4 +23,4 @@ Route::resource('books', 'BookController')->only([
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+

@@ -4,7 +4,7 @@
 
 @include('layouts.book-cardlist', [
   'title'=> 'Borrowed Books', 
-  'data'=>5, 
+  'data'=> $data->whereIn('id', $borrowed_books_id),
   'class'=>'borrowed-books',
   'btnclass'=>'btn-warning return',
   'btntext'=>'Return'
@@ -12,7 +12,7 @@
 
 @include('layouts.book-cardlist', [
   'title'=> 'My Favorites', 
-  'data'=>5, 
+  'data'=> $favorite_books_id, 
   'class'=>'favorites',
   'btnclass'=>'btn-primary borrow',
   'btntext'=>'Borrow'
