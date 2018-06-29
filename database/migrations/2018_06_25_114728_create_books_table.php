@@ -22,6 +22,7 @@ class CreateBooksTable extends Migration
             $table->string('imageURL');
             $table->boolean('isBorrowed')->default(0);
             $table->integer('timesBorrowed')->default(0);
+            $table->integer('borrowedBy')->nullable($value = true)->default(null);
             $table->timestamps();
         });
     }

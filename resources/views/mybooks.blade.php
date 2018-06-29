@@ -4,18 +4,18 @@
 
 @include('layouts.book-cardlist', [
   'title'=> 'Borrowed Books', 
-  'data'=> $data->whereIn('id', $borrowed_books_id),
+  'data'=> $borrowed_books,
   'class'=>'borrowed-books',
-  'btnclass'=>'btn-warning return',
+  'btnclass'=>'btn-warning return-book',
   'btntext'=>'Return'
   ])
 
 @include('layouts.book-cardlist', [
   'title'=> 'My Favorites', 
-  'data'=> $favorite_books_id, 
+  'data'=> $favorite_books, 
   'class'=>'favorites',
-  'btnclass'=>'btn-primary borrow',
-  'btntext'=>'Borrow'
+  'btnclass'=>'btn-warning unfavorite-book',
+  'btntext'=>'Unfavorite'
   ])
 
 @endsection

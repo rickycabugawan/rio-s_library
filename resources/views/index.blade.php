@@ -6,15 +6,15 @@
   'title'=> 'Most Popular', 
   'data'=> $data->where('isBorrowed',0)->sortByDesc('timesBorrowed'),
   'class'=>'most-popular',
-  'btnclass'=>'btn-primary borrow',
+  'btnclass'=>'btn-primary borrow-book',
   'btntext'=>'Borrow'
   ])
 
 @include('layouts.book-cardlist', [
   'title'=> 'Recently Returned', 
-  'data'=>$data->where('isBorrowed',0)->sortByDesc('updated_at'), 
+  'data'=>$data->where('isBorrowed',0)->where('timesBorrowed','>',0)->sortByDesc('updated_at'), 
   'class'=>'recently-returned',
-  'btnclass'=>'btn-primary borrow',
+  'btnclass'=>'btn-primary borrow-book',
   'btntext'=>'Borrow'
   ])
 
@@ -28,8 +28,8 @@
     @foreach($genres->random(3) as $genre)
       @include('layouts.book-list', [
         'title'=> $genre->genre, 
-        'data'=>$data->where('genre',$genre->genre),
-        'btnclass'=>'btn-primary borrow',
+        'data'=>$data->where('genre',$genre->genre)->sortByDesc('updated_at'),
+        'btnclass'=>'btn-primary borrow-book',
         'btntext'=>'Borrow'
         ])
     @endforeach
@@ -46,8 +46,8 @@
     @foreach($sections->random(3) as $section)
       @include('layouts.book-list', [
         'title'=> $section->section, 
-        'data'=>$data->where('library_section',$section->section),
-        'btnclass'=>'btn-primary borrow',
+        'data'=>$data->where('library_section',$section->section)->sortByDesc('updated_at'),
+        'btnclass'=>'btn-primary borrow-book',
         'btntext'=>'Borrow'
         ])
     @endforeach

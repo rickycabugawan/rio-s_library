@@ -8,44 +8,61 @@
   </div>
   <div class="card-body px-3 py-4">
   	<div class="row">
-  		<div class="col-3 filter-options border-right">
-  			<input type="text" class="form-control form-control-sm" name="" placeholder="Title">
-  			<input type="text" class="form-control form-control-sm" name="" placeholder="Author">
+  		<form class="col-3 filter-options border-right">
+  			<input type="text" class="form-control form-control-sm" name="title" value="{{ app('request')->input('title') }}" placeholder="Title">
+  			<input type="text" class="form-control form-control-sm" name="author" value="{{ app('request')->input('author') }}"placeholder="Author">
   			<div class="dropdown-divider"></div>
-  			<small>Genre <a href="" class="float-right"><small>SELECT ALL</small></a></small>
-  			@for($i=0;$i<8;$i++)
+  			<small>Genre <a href="" class="float-right select-all-genre"><small>SELECT ALL</small></a></small>
+
+  			@foreach($genres as $genre)
   			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="adventure" id="adventure" name="genre[]">
-			  <label class="form-check-label" for="adventure">Adventure</label>
+			  <input class="form-check-input genre-check" type="checkbox" value="{{$genre->genre}}" id="adventure" name="genre[]" 
+			  @if (isset($_GET['genre']) && in_array($genre->genre,$_GET['genre']))
+			  {{'checked'}}
+			  @endif
+			  >
+			  <label class="form-check-label" for="adventure">{{$genre->genre}}</label>
 			</div>
-			@endfor
+			@endforeach
 			<div class="dropdown-divider"></div>
-  			<small>Library Section <a href="" class="float-right"><small>SELECT ALL</small></a></small>
-  			@for($i=0;$i<8;$i++)
+  			<small>Library Section <a href="" class="float-right select-all-section"><small>SELECT ALL</small></a></small>
+  			@foreach($sections as $section)
   			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="adventure" id="adventure" name="genre[]">
-			  <label class="form-check-label" for="adventure">Periodical Section</label>
+			  <input class="form-check-input section-check" type="checkbox" value="{{$section->section}}" id="adventure" name="section[]" 
+			  @if (isset($_GET['section']) && in_array($section->section,$_GET['section']))
+			  {{'checked'}}
+			  @endif
+			  >
+			  <label class="form-check-label" for="adventure">{{$section->section}}</label>
 			</div>
-			@endfor
-			<button class="btn btn-primary btn-sm mt-3">Search</button>
-			<button class="btn btn-primary btn-sm">Reset</button>
-  		</div>
+			@endforeach
+			<button type="submit" class="btn btn-primary btn-sm mt-3">Search</button>
+			<a href="/search" class="btn btn-primary btn-sm">Reset</a>
+  		</form>
   		<div class="col-9">
   			<div class="alert alert-primary" role="alert">
-			  <div>Searched for Title: "Hello World"</div>
-			  <div>Searched for Author: "Ricky"</div>
+
+  				@if (isset($_GET['title']) && $_GET['title']!="")
+				  {!!"<div>Searched for Title: \"".$_GET['title']."\"</div>"!!}
+				@endif
+
+				@if (isset($_GET['author']) && $_GET['author']!="")
+				  {!!"<div>Searched for Author: \"".$_GET['author']."\"</div>"!!}
+				@endif
 			</div>
 
 			<div class="results">
-				@for($i=0;$i<16;$i++)
-				<div class="book">
-				  <div class="p-0 text-center">
-				    <a href=""><img class="img-fluid book__img" src="{{asset('img/01.jpg')}}"></a>
-				    <small>The Enormous Crocodile</small>
-				    <small>By: Author</small>
-				  </div>
-				</div>
-				@endfor
+				@if(count($books)>0)
+					@foreach($books as $book)
+					<div class="book">
+					  <div class="p-0 text-center">
+					    <a href="{{action('BookController@show',['id' => $book->id])}}"><img class="img-fluid book__img" src="{{ asset('img/cover/')."/".$book->imageURL}}"></a>
+					    <small>{{ str_limit($book->title,20)}}</small><br>
+					    <small>By: {{$book->author}}</small>
+					  </div>
+					</div>
+					@endforeach
+				@endif
 			</div>		
   		</div>
   	</div>

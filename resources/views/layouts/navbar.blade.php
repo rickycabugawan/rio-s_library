@@ -14,22 +14,17 @@
 			     <div class="dropdown-item dropdown-submenu">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" class="dropdown-toggle">By Genre </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Horror</a>
-                    <a class="dropdown-item" href="#">Romance</a>
-                    <a class="dropdown-item" href="#">Thriller</a>
-                    <a class="dropdown-item" href="#">Sci-Fi</a>
-                    <a class="dropdown-item" href="#">Fantasy</a>
-                    <a class="dropdown-item" href="#">Comedy</a>
+                    @foreach($genres as $genre)
+                      <a class="dropdown-item" href="/search?genre%5B%5D={{$genre->genre}}">{{$genre->genre}}</a>
+                    @endforeach
                 </div>
             </div>
             <div class="dropdown-item dropdown-submenu">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" class="dropdown-toggle">By Library Section </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Circulation</a>
-                    <a class="dropdown-item" href="#">Periodical Section</a>
-                    <a class="dropdown-item" href="#">General Reference</a>
-                    <a class="dropdown-item" href="#">Children's Section</a>
-                    <a class="dropdown-item" href="#">Fiction</a>
+                    @foreach($sections as $section)
+                      <a class="dropdown-item" href="/search?section%5B%5D={{$section->section}}">{{$section->section}}</a>
+                    @endforeach
                 </div>
             </div>
              <div class="dropdown-divider"></div>
@@ -59,16 +54,15 @@
       @endauth
 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0" action="/search" method="get">
       <div class="input-group">
         <div class="input-group-prepend">
         <select class="search-options form-control">
-          <option value="all">All</option>
           <option value="title">Title</option>
           <option value="author">Author</option>
         </select>
         </div>
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2 search-box" type="search" name="title" placeholder="Search" aria-label="Search">
       </div>
       <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
     </form>

@@ -1,7 +1,6 @@
 /*slick carousel*/
 $(document).ready(function(){
   $('.book-carousel .card-body .row').slick({
-    lazyLoad: 'ondemand',
     infinite: false,
 	slidesToShow: 6,
 	slidesToScroll: 6
@@ -38,4 +37,97 @@ function readURL(input) {
 $(".input-img").change(function () {
     readURL(this);
 });
+
+
+/*book CRUD functions*/
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+});
+
+$(document).on('click','.borrow-book',function(){
+    var book_id = $(this).data('book_id');
+    var button = $(this);
+    $.post('/borrow',{
+        book_id : book_id,
+    },
+    function(data){  
+     alert(data);
+     button.closest('.book').fadeOut();
+     button.addClass('disabled');
+    })
+});
+
+$(document).on('click','.return-book',function(){
+    var book_id = $(this).data('book_id');
+    var button = $(this);
+    $.post('/return',{
+        book_id : book_id,
+    },
+    function(data){ 
+        alert(data);
+        button.closest('.book').fadeOut();
+        
+    })
+});
+
+$(document).on('click','.favorite-book',function(){
+    var book_id = $(this).data('book_id');
+    var button = $(this);
+    $.post('/favorite',{
+        book_id : book_id,
+    },
+    function(data){  
+     alert(data);
+     button.addClass('disabled');
+    })
+});
+
+$(document).on('click','.unfavorite-book',function(){
+    var book_id = $(this).data('book_id');
+    var button = $(this);
+    $.post('/unfavorite',{
+        book_id : book_id,
+    },
+    function(data){  
+     alert(data);
+     button.closest('.book').fadeOut(); 
+    })
+});
+
+$(document).on('click','.delete-book',function(){
+    var book_id = $(this).data('book_id');
+    $.post('/delete',{
+        book_id : book_id,
+    },
+    function(data){  
+     alert(data);
+     window.location.href = "/";
+    })
+});
+
+
+/*search functions*/
+$(".search-options").on('change', function(){
+    var val = $(".search-options").val();
+    $(".search-box").attr('name',val);
+})
+
+$('.select-all-genre').click(function(e){
+    
+    e.preventDefault();
+    $('.genre-check').prop('checked', true);    
+})
+
+$('.select-all-section').click(function(e){
+    
+    e.preventDefault();
+    $('.section-check').prop('checked', true);    
+})
+
+
+
+
+
 		

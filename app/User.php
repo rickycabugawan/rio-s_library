@@ -27,11 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    function borrowed_book() {
-        return $this->hasMany('App\BorrowedBook');
-    }
 
     function favorite_book() {
-        return $this->hasMany('App\FavoriteBook');
+        return $this->belongsToMany('App\Book','favorite_books');
     }
 }
