@@ -27,5 +27,15 @@ Migrate databases, seed and deploy
 php artisan migrate:fresh --seed
 php artisan serve
 ```
- 
+
+Navigate to <http://127.0.0.1:8000>
+
+### Admin account
+
+Use this admin account to access admin functions such as add and delete 
+```
+Email: admin@gmail.com
+Password: secret
+```
+
 
