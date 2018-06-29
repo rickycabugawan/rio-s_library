@@ -88,3 +88,13 @@ body {
 	grid-gap: 20px;
 	grid-template-columns: 1fr 1fr 1fr 1fr; 
 }
+
+/*popup alert*/
+
+#popup-alert {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	display: none;
+}

@@ -85,6 +85,8 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $data = Book::all();
+        $genres = Genre::all();
+        $sections = LibrarySection::all();
         return view('single',compact('data','book'));
     }
 

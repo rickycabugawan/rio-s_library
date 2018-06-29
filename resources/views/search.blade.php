@@ -40,16 +40,18 @@
 			<a href="/search" class="btn btn-primary btn-sm">Reset</a>
   		</form>
   		<div class="col-9">
-  			<div class="alert alert-primary" role="alert">
+  			@if ((isset($_GET['title']) && $_GET['title']!="") || (isset($_GET['author']) && $_GET['author']!=""))
+	  			<div class="alert alert-primary" role="alert">
 
-  				@if (isset($_GET['title']) && $_GET['title']!="")
-				  {!!"<div>Searched for Title: \"".$_GET['title']."\"</div>"!!}
-				@endif
+	  				@if (isset($_GET['title']) && $_GET['title']!="")
+					  {!!"<div>Searched for Title: \"".$_GET['title']."\"</div>"!!}
+					@endif
 
-				@if (isset($_GET['author']) && $_GET['author']!="")
-				  {!!"<div>Searched for Author: \"".$_GET['author']."\"</div>"!!}
-				@endif
-			</div>
+					@if (isset($_GET['author']) && $_GET['author']!="")
+					  {!!"<div>Searched for Author: \"".$_GET['author']."\"</div>"!!}
+					@endif
+				</div>
+			@endif
 
 			<div class="results">
 				@if(count($books)>0)

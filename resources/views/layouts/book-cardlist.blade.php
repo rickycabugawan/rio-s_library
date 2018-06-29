@@ -9,7 +9,7 @@
     		<div class="book col-2 p-0 mx-2">
 			  <div class="p-0 text-center">
 			    <a href="{{action('BookController@show',['id' => $book->id])}}"><img class="img-fluid book__img" src="{{ asset('img/cover/')."/".$book->imageURL}}"></a>
-			    <a href="#" class="btn btn-sm {{$btnclass}} book__btn mt-3" data-book_id="{{$book->id}}">{{$btntext}}</a>
+			    <button class="btn btn-sm {{$btnclass}} book__btn mt-3" data-book_id="{{$book->id}}">{{$btntext}}</button>
 			  </div>
 			</div>
     	@endforeach

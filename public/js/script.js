@@ -53,9 +53,11 @@ $(document).on('click','.borrow-book',function(){
         book_id : book_id,
     },
     function(data){  
-     alert(data);
-     button.closest('.book').fadeOut();
-     button.addClass('disabled');
+         $('.popup-text').html(data);
+         $('#popup-alert').hide().slideDown();
+         setTimeout(function(){  $('#popup-alert').fadeOut(); }, 2000);
+         button.closest('.book').fadeOut();
+         button.addClass('disabled');
     })
 });
 
@@ -66,7 +68,9 @@ $(document).on('click','.return-book',function(){
         book_id : book_id,
     },
     function(data){ 
-        alert(data);
+        $('.popup-text').html(data);
+        $('#popup-alert').hide().slideDown();
+        setTimeout(function(){  $('#popup-alert').fadeOut(); }, 2000);
         button.closest('.book').fadeOut();
         
     })
@@ -78,9 +82,11 @@ $(document).on('click','.favorite-book',function(){
     $.post('/favorite',{
         book_id : book_id,
     },
-    function(data){  
-     alert(data);
-     button.addClass('disabled');
+    function(data){ 
+        $('.popup-text').html(data);
+        $('#popup-alert').hide().slideDown();
+        setTimeout(function(){  $('#popup-alert').fadeOut(); }, 2000); 
+        button.addClass('disabled');
     })
 });
 
@@ -91,8 +97,10 @@ $(document).on('click','.unfavorite-book',function(){
         book_id : book_id,
     },
     function(data){  
-     alert(data);
-     button.closest('.book').fadeOut(); 
+        $('.popup-text').html(data);
+        $('#popup-alert').hide().slideDown();
+        setTimeout(function(){  $('#popup-alert').fadeOut(); }, 2000); 
+        button.closest('.book').fadeOut(); 
     })
 });
 
@@ -102,8 +110,10 @@ $(document).on('click','.delete-book',function(){
         book_id : book_id,
     },
     function(data){  
-     alert(data);
-     window.location.href = "/";
+        $('.popup-text').html(data);
+        $('#popup-alert').hide().slideDown();
+        setTimeout(function(){  $('#popup-alert').fadeOut(); }, 2000); 
+        window.location.href = "/";
     })
 });
 

@@ -1,3 +1,8 @@
+
+<div class="alert alert-warning alert-dismissible fade show" id="popup-alert">
+  <strong class="popup-text"></strong>
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent my-3">
   <a class="navbar-brand text-uppercase p-1" href="/"><h5 class="m-0 font-italic"><span class="text-primary" style="font-size: 1.2em">Rio's</span> Library</h5></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,22 +32,14 @@
                     @endforeach
                 </div>
             </div>
-             <div class="dropdown-divider"></div>
-            <div class="dropdown-item">
-            	<a href="#" class="nav-link">Random Book</a>
-            </div>
         </div>
       </li>
       
       @auth
         <li class="nav-item dropdown px-2">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          <a class="nav-link" href="/mybooks">
             My Books
           </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item nav-link" href="/mybooks">Borrowed Books</a>
-            <a class="dropdown-item nav-link" href="/mybooks">My Favorites</a>
-          </div>
         </li>
         @if(Auth::user()->isAdmin)
           <li class="nav-item px-2">

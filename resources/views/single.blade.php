@@ -33,11 +33,11 @@
 			  <small>Last Borrowed:<br> {{$book->updated_at->format("M j, Y, g:ia")}}</small>
 			</div>
 	    	<img class="img-fluid book-info__img" src="{{ asset('img/cover/')."/".$book->imageURL}}">
-	    	<a href="#" class="btn btn-primary book-info__borrow-btn mt-3 borrow-book" data-book_id="{{$book->id}}">Borrow</a>
-	    	<a href="#" class="btn btn-warning book-info__borrow-btn mt-3 favorite-book" data-book_id="{{$book->id}}">Add to Favorites</a>
+	    	<button class="btn btn-primary book-info__borrow-btn mt-3 borrow-book" data-book_id="{{$book->id}}">Borrow</button>
+	    	<button class="btn btn-warning book-info__borrow-btn mt-3 favorite-book" data-book_id="{{$book->id}}">Add to Favorites</button>
 	    	@auth
 		    	@if(Auth::user()->isAdmin)
-		    		<a href="#" class="btn btn-danger book-info__borrow-btn mt-3 delete-book" data-book_id="{{$book->id}}">Remove Book</a>
+		    		<button class="btn btn-danger book-info__borrow-btn mt-3 delete-book" data-book_id="{{$book->id}}">Remove Book</button>
 		    	@endif
 		    @endauth
 	    </div>
